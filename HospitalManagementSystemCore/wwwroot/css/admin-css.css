@@ -1,0 +1,50 @@
+.transparent-wrapper {
+            background-color: transparent;
+            border: none;
+            opacity: 0.8;
+        }
+
+        .blue-text {
+            color: #1390D6;
+        }
+
+        .grey-text {
+            color: #4E4E4E;
+        }
+
+        .light-blue {
+            color: #7AA7C1;
+        }
+
+        .grey-var {
+            color: #404040;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../fonts/Poppins-Bold.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Poppins-Light';
+            src: url('../fonts/Poppins-Light.ttf') format('truetype');
+        }
+
+        .my-text {
+            /* other styles */
+            text-transform: none !important;
+        }
+        .form-control {
+            background-color: #e9ecef; /* set grey background color */
+            border: none; /* remove default border */
+        }
+        .bag_img {
+            background-image: url('../img/bgImgAdmin.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .rounded-pill {
+            border-radius: 50px; /* set round corner edges */
+            padding-left: 20px; /* add left padding for a better look */
+            padding-right: 20px; /* add right padding for a better look */
+        }

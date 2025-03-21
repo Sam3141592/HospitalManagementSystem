@@ -1,0 +1,22 @@
+﻿.body {
+    background-color: rgb(122, 163, 193, 0.25);
+    width: 100%;
+}
+
+.Hospital {
+    color: #333793;
+}
+
+.logo {
+    color: black;
+}
+
+a {
+    color: #404040 !important;
+    text-decoration: none;
+    outline: none;
+}
+
+    a:hover {
+        color: #34C4F1 !important;
+    }

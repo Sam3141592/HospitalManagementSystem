@@ -1,0 +1,261 @@
+﻿@page
+@model HospitalManagementSystem.Pages.ADMIN.AdminAddModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+        <div class="container-fluid">
+    <div class="d-sm-flex ml-5 mb-2 mt-3">
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color: #4E4E4E;">Welcome, </h1>
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color:#1390D6;">@Model.mname</h1>
+    </div>
+            <section>
+                <div class="row">
+                    <div class="col-lg-12">
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Departement</h2>
+                            <div class="card-body">
+                        <select name="mySelect" id="mySelect" onchange="toggleForm()">
+                            <option value="department" selected>Department</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="lab-technician">Lab Technician</option>
+                            <option value="nurse">Nurse</option>
+                            <option value="pharmacist">Pharmacist</option>
+                            <option value="NURSE_SERVE_AT">Nurse Schedule</option>
+                            <option value="DOCTOR_WORK_AT">Doctor Schedule</option>
+                        </select>
+                        <form id="doctor-form" name="doctor-form" method="post" onsubmit="return validateForm()">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="doctor" />
+                            <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
+                            <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
+                            <input type="text" name="staff-id" id="staff-id" placeholder="Staff ID" required>
+                            <input type="text" name="national-id" id="national-id" placeholder="National ID" required>
+                            <input type="text" name="dept-number" id="dept-number" placeholder="Department Number" required>
+                            <input type="number" name="age" id="age" placeholder="Age" required>
+                            <label for="gender-male">Male</label>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-female">Female</label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <input type="text" name="street" id="street" placeholder="Street" required>
+                            <input type="text" name="city" id="city" placeholder="City" required>
+                            <input type="text" name="governorate" id="governorate" placeholder="Governorate" required>
+                            <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                            <input type="email" name="staff-email" id="staff-email" placeholder="Staff Email" required>
+                            <input type="submit" value="Submit">
+                        </form>
+
+                        <form id="department-form" name="department-form" method="post">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="department" />
+                            <input type="text" id="name" name="name" placeholder="Name" required>
+                            <input type="text" id="dept-number" name="dept-number" placeholder="Department Number" required>
+                            <input type="text" id="specialty" name="specialty" placeholder="Specialty" required>
+                            <input type="submit" value="Submit">
+                            </form>
+                        <form id="nurse-schedule" name="nurse-schedule" method="post">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="NURSE_SERVE_AT" />
+                            <input type="text" id="roomid" name="roomid" placeholder="Room-ID" required>
+                            <input type="text" id="nurseid" name="nurseid" placeholder="Nurse-ID" required>
+                            <select id="day" name="day" class="form-select form-control" required>
+                                <option value="">Select a day</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                            <div class="col">
+                                <label for="start-time">Start Time:</label>
+                                <input type="time" id="start-time" name="start-time" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="end-time">End Time:</label>
+                                <input type="time" id="end-time" name="end-time" class="form-control" required>
+                            </div>
+                            <input type="submit" value="Submit">
+                        </form>
+                        <form id="doctor-schedule" name="doctor-schedule" method="post">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="DOCTOR_WORK_AT" />
+                            <input type="text" id="roomid" name="roomid" placeholder="Room-ID" required>
+                            <input type="text" id="doctorid" name="doctorid" placeholder="doctor-ID" required>
+                            <select id="day" name="day" class="form-select form-control" required>
+                                <option value="">Select a day</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                            <div class="col">
+                                <label for="start-time">Start Time:</label>
+                                <input type="time" id="start-time" name="start-time" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="end-time">End Time:</label>
+                                <input type="time" id="end-time" name="end-time" class="form-control" required>
+                            </div>
+                            <input type="submit" value="Submit">
+                        </form>
+                        <form method="post" id="labtech-form" style="display:none;">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="labtechnician" />
+                            <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                            <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                            <input type="text" id="staff-id" name="staff-id" placeholder="Staff ID" required>
+                            <input type="text" id="national-id" name="national-id" placeholder="National ID" required>
+                            <input type="number" id="age" name="age" placeholder="Age" required>
+                            <label for="gender-male">Male</label>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-female">Female</label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <input type="text" id="street" name="street" placeholder="Street" required>
+                            <input type="text" id="city" name="city" placeholder="City" required>
+                            <input type="text" id="governorate" name="governorate" placeholder="Governorate" required>
+                            <input type="text" id="phone" name="phone" placeholder="Phone Number" required>
+                            <input type="password" id="password" name="password" placeholder="Password" required>
+                            <input type="email" id="staff-email" name="staff-email" placeholder="Staff Email" required>
+                            <input type="submit" value="Submit">
+                            </form>
+                        <form method="post" id="pharmacist-form" style="display:none;">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="pharmacist" />
+                            <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
+                            <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
+                            <input type="text" name="staff-id" id="staff-id" placeholder="Staff ID" required>
+                            <input type="text" name="national-id" id="national-id" placeholder="National ID" required>
+                            <input type="number" name="age" id="age" placeholder="Age" required>
+                            <label for="gender-male">Male</label>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-female">Female</label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <input type="text" name="street" id="street" placeholder="Street" required>
+                            <input type="text" name="city" id="city" placeholder="City" required>
+                            <input type="text" name="governorate" id="governorate" placeholder="Governorate" required>
+                            <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                            <input type="email" name="staff-email" id="staff-email" placeholder="Staff Email" required>
+                            <input type="submit" value="Submit">
+                            </form>
+                        <form method="post" id="nurse-form" style="display:none;">
+                            <input type="hidden" name="selectedItem" id="selectedItem" value="nurse" />
+                            <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
+                            <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
+                            <input type="text" name="staff-id" id="staff-id" placeholder="Staff ID" required>
+                            <input type="text" name="national-id" id="national-id" placeholder="National ID" required>
+                            <input type="text" name="dept-number" id="dept-number" placeholder="Department Number" required>
+                            <input type="number" name="age" id="age" placeholder="Age" required>
+                            <label for="gender-male">Male</label>
+                            <input type="radio" id="gender-male" name="gender" value="male">
+                            <label for="gender-female">Female</label>
+                            <input type="radio" id="gender-female" name="gender" value="female">
+                            <input type="text" name="street" id="street" placeholder="Street" required>
+                            <input type="text" name="city" id="city" placeholder="City" required>
+                            <input type="text" name="governorate" id="governorate" placeholder="Governorate" required>
+                            <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
+                            <input type="password" name="password" id="password" placeholder="Password" required>
+                            <input type="email" name="staff-email" id="staff-email" placeholder="Staff Email" required>
+                            <input type="submit" value="Submit">
+                            </form>
+
+
+                        <script>
+                            document.getElementById("mySelect").addEventListener("change", function() {
+                                var selectedItem = this.value;
+                                document.getElementById("selectedItem").value = selectedItem;
+                             });
+                            window.onload = function () {
+                                toggleForm();
+                            };
+                            function toggleForm() {
+                                var profession = document.getElementById("mySelect").value;
+                                var doctorForm = document.getElementById("doctor-form");
+                                var labtechForm = document.getElementById("labtech-form");
+                                var pharmacistForm = document.getElementById("pharmacist-form");
+                                var nurseForm = document.getElementById("nurse-form");
+                                var departementForm = document.getElementById("department-form");
+                                var nurseScheduleForm = document.getElementById("nurse-schedule");
+                                var doctorScheduleForm = document.getElementById("doctor-schedule");
+                                
+                                if (profession == "doctor") {
+                                    doctorForm.style.display = "block";
+                                } else {
+                                    doctorForm.style.display = "none";
+                                }
+                                if (profession == "lab-technician") {
+                                    labtechForm.style.display = "block";
+                                } else {
+                                    labtechForm.style.display = "none";
+                                }
+                                if (profession == "pharmacist") {
+                                    pharmacistForm.style.display = "block";
+                                } else {
+                                    pharmacistForm.style.display = "none";
+                                }
+                                if (profession == "nurse") {
+                                    nurseForm.style.display = "block";
+                                } else {
+                                    nurseForm.style.display = "none";
+                                }
+                                if (profession == "department") {
+                                    departementForm.style.display = "block";
+                                } else {
+                                    departementForm.style.display = "none";
+                                }
+                                if (profession == "NURSE_SERVE_AT") {
+                                    nurseScheduleForm.style.display = "block";
+                                } else {
+                                    nurseScheduleForm.style.display = "none";
+                                }
+                                if (profession == "DOCTOR_WORK_AT") {
+                                    doctorScheduleForm.style.display = "block";
+                                } else {
+                                    doctorScheduleForm.style.display = "none";
+                                }
+
+
+                                // Add similar code to show/hide other forms based on profession
+                            }
+
+                            function validateForm() {
+                                var profession = document.getElementById("mySelect").value;
+
+                                // Validate doctor form
+                                if (profession == "doctor") {
+                                    var age = document.getElementById("age").value;
+                                    if (!Number.isInteger(Number(age))) {
+                                        alert("Age must be an integer value");
+                                        return false;
+                                    }
+                                }
+
+                                var gender = document.querySelector('input[name="gender"]:checked');
+                                if (!gender) {
+                                    alert("Please select a gender");
+                                    return false;
+                                }
+
+                                // Add similar validation for other professions
+
+                                // Check if all required fields are filled
+                                var requiredFields = document.querySelectorAll("#doctor-form [required]");
+                                for (var i = 0; i < requiredFields.length; i++) {
+                                    if (requiredFields[i].value == "") {
+                                        alert("Please fill in all required fields");
+                                        return false;
+                                    }
+                                }
+
+                                // If we got here, everything is valid
+                                return true;
+                            }
+                        </script>
+
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+            </section>
+        </div>

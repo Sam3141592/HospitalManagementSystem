@@ -1,0 +1,85 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.departmentsModel
+@{
+    Layout = "_LayoutAM";
+}
+<main>
+    <!--? Hero Start -->
+    <div class="slider-area2">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                            <h2>Departments</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!--? department_area_start  -->
+    <div class="department_area section-padding2">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center mb-100">
+                        <span>Welcome @Model.pname, see Our Departments</span>
+                        <h2>Our Medical Services</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="depart_ment_tab mb-30">
+                        <!-- Tabs Buttons -->
+                        <ul class="nav" id="myTab" role="tablist">
+                            @for (int i = 0; i < Model.deptsPa.Rows.Count; i++)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @((i == 0) ? "active" : "")" id="@Model.deptsPa.Rows[i][0]-tab" data-toggle="tab" href="#@Model.deptsPa.Rows[i][0]" role="tab" aria-controls="@Model.deptsPa.Rows[i][0]" aria-selected="@(i == 0 ? "true" : "false")">
+                                        <h3>@Model.deptsPa.Rows[i][0]</h3>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dept_main_info white-bg">
+                <div class="tab-content" id="myTabContent">
+                    @for (int i = 0; i < Model.deptsPa.Rows.Count; i++)
+                    {
+                        <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="@Model.deptsPa.Rows[i][0]" role="tabpanel" aria-labelledby="@Model.deptsPa.Rows[i][0]-tab">
+                            <!-- single_content -->
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-lg-7">
+                                    <div class="dept_info">
+                                        <h3>@Model.deptsPa.Rows[i][0]</h3>
+                                        <h4>The @Model.deptsPa.Rows[i][0] Deparment has @Model.deptsPa.Rows[i][1] doctors. Average rating from patients who visited this deparment is @Model.deptsPa.Rows[i][2].</h4>
+                                        <a href="/Patient_Pages/BA2?deptid=@Model.deptsPa.Rows[i][3]" class="dep-btn">Appointment<i class="ti-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="dept_thumb">
+                                        @{
+                                            string departmentName = (string)Model.deptsPa.Rows[i][0];
+                                            string imagePath = $"~/assets/img/gallery/{departmentName}.jpg";
+                                            string resolvedImagePath = Url.Content(imagePath);
+                                        }
+                                        <img src="@resolvedImagePath" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single_content -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- department area_end  -->
+</main>

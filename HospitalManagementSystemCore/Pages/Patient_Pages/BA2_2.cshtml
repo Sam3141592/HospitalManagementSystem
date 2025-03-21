@@ -1,0 +1,150 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.BA2_2Model
+@{
+    Layout = "_LayoutAM";
+}
+<main>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <div class="contact-form-main">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="form-wrapper">
+
+                        <!--Section Tittle  -->
+                        <div class="form-tittle">
+                            <div class="row m-4">
+                                <div class="col-xl-12">
+                                    <div class="section-tittle section-tittle2">
+                                        <span>Book An Appointment</span>
+                                        <h2>Appointment Form</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col rectangle ">
+                                <p>Choose your Department</p>
+                            </div>
+                            <div class="col ">
+                                <div class="rectangle ">
+                                    <p>Choose your Doctor</p>
+                                </div>
+                            </div>
+                            <div class="col department">
+                                <div class="rectangle">
+                                    <p>Choose the Day</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="rectangle">
+                                    <p>Appoint an Appointment</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--End Section Tittle  -->
+                        <form style="font:29px" id="contact-form" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <p>Select Date from the available Date For Doctor: @Model.docName</p>
+                                        <label for="date">Date</label>
+                                        <input type="text" class="form-control datepicker" placeholder="Date" name="date">
+                                    </div>
+                                </div>
+                                <div class="submit-info mt-3">
+                                    <button class="btn" type="submit">Next <i class="ti-arrow-right"></i> </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact left Img-->
+    </div>
+    <style>
+        .rectangle {
+            background-color: transparent;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .department {
+            background-color: #396cf0;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Datepicker JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        function getDatesToDisable(daysList) {
+            var currentDate = new Date();
+            var endDate = new Date();
+            endDate.setDate(currentDate.getDate() + 14);
+
+            var datesToDisable = [];
+
+            while (currentDate <= endDate) {
+                var currentDay = currentDate.getDay();
+                var dayName = getDayName(currentDay);
+
+                if (!daysList.includes(dayName)) {
+                    var formattedDate = formatDate(currentDate);
+                    datesToDisable.push(formattedDate);
+                }
+
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+            return datesToDisable;
+        }
+
+        function getDayName(day) {
+            var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return weekdays[day];
+        }
+
+        function formatDate(date) {
+            var month = String(date.getMonth() + 1).padStart(2, '0');
+            var day = String(date.getDate()).padStart(2, '0');
+            var year = date.getFullYear();
+            return month + '-' + day + '-' + year;
+        }
+        var encodedData = @Html.Raw(Json.Serialize(Model.JSONWorkingDays));
+
+        // Decode the HTML-encoded string
+        var decodedData = $("<div/>").html(encodedData).text();
+
+        // Parse the JSON string
+        var jsonData = JSON.parse(decodedData);
+
+        // Extract the day names and create a list of strings
+        var dayNames = jsonData.map(function (item) {
+            return item.working_Day;
+        });
+
+        var datesForDisable = getDatesToDisable(dayNames);
+        var today = new Date();
+        var twoWeeksLater = new Date();
+        twoWeeksLater.setDate(today.getDate() + 14);
+        $('.datepicker').datepicker({
+            format: 'mm-dd-yyyy',
+            autoclose: true,
+            startDate: today,
+            endDate: twoWeeksLater,
+            todayHighlight: true,
+            datesDisabled: datesForDisable
+        });
+    </script>
+</main>
+

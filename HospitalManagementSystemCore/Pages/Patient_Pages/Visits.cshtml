@@ -1,0 +1,76 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.RecordModel
+@{
+    Layout = "_LayoutAM";
+}
+<body>  
+    <main>
+        <div class="home_blog-area section-padding30">
+            <div class="container">
+                <div class="row justify-content-sm-center">
+                    <div class="cl-xl-7 col-lg-8 col-md-10">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle text-center mb-70">
+                            <span>welcome, @Model.pname, see your visits</span>
+                            <h2>It was great to see you! <br />Your feedback will be truely appreciated.</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="single-blogs mb-30">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h1 style="margin:10px">Your Visits</h1>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                        <div class="card-body" style="font-size:25px">
+                                            <table class="table table-responsive-xl" id="test-results">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Doctor Name</th>
+                                                        <th>Room</th>
+                                                        <th>Date</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.visits.Rows.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <th scope="row">@Model.visits.Rows[i][0]</th>
+                                                            @for (int j = 1; j < Model.visits.Columns.Count - 1; j++)
+                                                            {
+                                                                if (j == 2)
+                                                                {
+                                                                    <td>@(((DateTime)Model.visits.Rows[i][j]).ToShortDateString())</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@Model.visits.Rows[i][j]</td>
+                                                                }
+                                                                
+                                                            }
+                                                            <form method="post">
+                                                                <input type="hidden" name="visitid" id="selectedItem" value="@Model.visits.Rows[i][3]" />
+                                                            <td><input type="submit" value="Give Feedback" required></td>
+                                                            </form>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="float-xl-end"><a href="/LabTechnician/LabtechPast?sid=@ViewData["sid"]">See more</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>

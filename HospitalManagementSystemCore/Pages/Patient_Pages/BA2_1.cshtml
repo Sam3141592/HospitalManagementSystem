@@ -1,0 +1,85 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.BA2_1Model
+@{
+    Layout = "_LayoutAM";
+}
+<main>
+    <div class="contact-form-main">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="form-wrapper">
+
+                        <!--Section Tittle  -->
+                        <div class="form-tittle">
+                            <div class="row m-4">
+                                <div class="col-xl-12">
+                                    <div class="section-tittle section-tittle2">
+                                        <span>Book An Appointment</span>
+                                        <h2>Appointment Form</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col rectangle ">
+                                <p>Choose your Department</p>
+                            </div>
+                            <div class="col department">
+                                <div class="rectangle ">
+                                    <p>Choose your Doctor</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="rectangle">
+                                    <p>Choose the Day</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="rectangle">
+                                    <p>Appoint an Appointment</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--End Section Tittle  -->
+                        <form style="font:29px" id="contact-form" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Select Your Doctor</p>
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            @for (int i = 0; i < Model.doctorName.Rows.Count; i++)
+                                            {
+                                                <option value=@Model.doctorName.Rows[i][0]>@Model.doctorName.Rows[i][0]</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="submit-info mt-3">
+                                    <button class="btn" type="submit">Next <i class="ti-arrow-right"></i> </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact left Img-->
+    </div>
+    <style>
+        .rectangle {
+            background-color: transparent;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .department {
+            background-color: #396cf0;
+        }
+    </style>
+</main>
+
+

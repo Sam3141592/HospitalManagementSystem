@@ -1,0 +1,71 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Labtech.LabtechRequestsModel
+@{
+    Layout = "_LayoutLabtech";
+}
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h3 style="padding:5px">Hello, @Model.ltname. <span>Welcome Here</span></h3>
+            </div>
+            <section>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Requests</h4>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-responsive-xl table-hover" id="test-requests">
+                                            <thead>
+                                                <tr>
+                                                    <th>Patient Name</th>
+                                                    <th>Test ID</th>
+                                                    <th>Test Name</th>
+                                                    <th>Date Requested</th>
+                                                    <th>Results to Enter</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.testsreq.Rows.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <th scope="row">@Model.testsreq.Rows[i][0]</th>
+                                                        @for (int j = 1; j < Model.testsreq.Columns.Count; j++)
+                                                        {
+                                                            if (j == 3)
+                                                            {
+                                                                <td>@(((DateTime)Model.testsreq.Rows[i][j]).ToShortDateString())</td>
+                                                            }
+                                                            else
+                                                            {
+                                                            <td>@Model.testsreq.Rows[i][j]</td>
+                                                                
+                                                            }
+                                                        }
+                                                        <form method="post"><input type="hidden" name="testid" id="selectedItem" value="@Model.testsreq.Rows[i][1]" />
+                                                        <td><input type="text" placeholder="Enter result" name="results" class="result-input"></td>
+                                                        <td><input type="submit" value="Submit"></td></form>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>

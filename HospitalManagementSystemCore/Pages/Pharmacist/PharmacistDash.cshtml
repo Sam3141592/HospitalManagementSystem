@@ -1,0 +1,112 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Pharmacist.PharmacistDashModel
+@{
+    Layout = "_LayoutPharmacist";
+}
+
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+    <div class="page-title">
+                <h3 style="padding:5px">Hello, @Model.mname. <span>Welcome Here</span></h3>
+            </div>
+            <section>
+                <div class="row">
+                    <div class="col-lg-6">
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                            <div class="card-title">
+                        <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Medicine List</h2>
+
+                            </div>
+                            <div class="card-body">
+                        <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                    <div class="card-body">
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Medicine Name</th>
+                                                        <th>Amount Available</th>
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @for(int i = 0; i < Model.MedicineTable.Rows.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <td>@Model.MedicineTable.Rows[i][0]</td>
+                                                        <td>
+                                                            @Model.MedicineTable.Rows[i][1]</td>
+                                                    </tr>
+                                                    
+                                                }
+                                            </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+                                <div class="ct-bar-chart m-t-30"></div>
+                                <div class="float-xl-end"><a href="/Pharmacist/PharmacistML">See more</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Announcements</h2>
+                            <div class="card-body">
+                                <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                    <div class="card-body">
+                                        @for (int i = 0; i < Math.Min(Model.annc.Rows.Count, 2); i++)
+                                        {
+                                            <div class="card">
+                                                <div class="card-title">
+                                                    @Model.annc.Rows[i][0]
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="ct-bar-chart m-t-30">
+                                                        <p>@Model.annc.Rows[i][2]</p>
+                                                    </div>
+                                                </div>
+                                                <div class="float-xl-end">@Model.annc.Rows[i][1]</div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="float-xl-end"><a href="/Pharmacist/PharmacistAnnouncements">See more</a></div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        </div>
+</div>
+<script>
+    const btnsInc = document.querySelectorAll('.btn-inc');
+    const btnsDec = document.querySelectorAll('.btn-dec');
+    const amounts = document.querySelectorAll('.amount');
+
+    btnsInc.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            let currentAmount = parseInt(amounts[index].textContent);
+            currentAmount += 1;
+            amounts[index].textContent = currentAmount;
+        });
+    });
+
+    btnsDec.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            let currentAmount = parseInt(amounts[index].textContent);
+            if (currentAmount > 0) {
+                currentAmount -= 1;
+                amounts[index].textContent = currentAmount;
+            }
+        });
+    });
+
+</script>

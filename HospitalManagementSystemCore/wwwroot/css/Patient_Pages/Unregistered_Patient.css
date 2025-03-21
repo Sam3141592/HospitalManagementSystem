@@ -1,0 +1,211 @@
+﻿.Statistics {
+    position: absolute;
+    background-color: white;
+    top: 550px;
+    left: 267px;
+    width: 750px;
+    height: 250px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.Our_Statistics {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 400;
+    font-weight: bold;
+}
+
+.ring {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    left: 510px;
+    top: 50px;
+    border-radius: 50%;
+    border: 10px solid #ccc;
+}
+
+    .ring:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: calc(100% + 20px);
+        height: calc(100% + 20px);
+        border-radius: 50%;
+        border: 10px solid #62C7FF;
+    }
+
+.for_percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bold;
+    color: #62C7FF;
+}
+
+
+.Satisfied {
+    position: absolute;
+    top: 200px;
+    left: 510px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.Rate {
+    position: absolute;
+    top: 197.5px;
+    left: 300px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.for_rate {
+    position: absolute;
+    top: 50%;
+    left: 350px;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bold;
+    color: #62C7FF;
+}
+
+
+.Visit {
+    position: absolute;
+    top: 197.5px;
+    left: 120px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.number_of_visits {
+    position: absolute;
+    top: 50%;
+    left: 140px;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bold;
+    color: #62C7FF;
+}
+
+
+
+.our_medical_services {
+    color: #404040;
+    width: 471px;
+    height: auto;
+    left: 480px;
+    top: 830px;
+    position: absolute;
+    font-size: 36px;
+    font-family: Poppins;
+    font-weight: 400;
+    line-height: 108%;
+    text-decoration: none;
+}
+
+.smaller_text_medical_services {
+    top: 880px;
+    left: 530px;
+    color: rgba(166, 166, 166, 1);
+    height: auto;
+    position: absolute;
+    font-size: 18px;
+    font-family: Poppins;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+
+
+.Medical_service1 {
+    position: absolute;
+    background-color: white;
+    top: 940px;
+    left: 267px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.lab_img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    left: 45px;
+}
+
+.text_Medical_service1 {
+    position: absolute;
+    top: 100px;
+}
+
+.Medical_service2 {
+    position: absolute;
+    top: 940px;
+    left: 530px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #4593BE;
+}
+
+.imbulance_img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    left: 40px;
+}
+
+.text_Medical_service2 {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+}
+
+.Medical_service3 {
+    position: absolute;
+    background-color: white;
+    top: 940px;
+    left: 800px;
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.online_appoint_img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    left: 50px;
+}
+
+.text_Medical_service3 {
+    position: absolute;
+    top: 100px;
+    font-size: 15px;
+}

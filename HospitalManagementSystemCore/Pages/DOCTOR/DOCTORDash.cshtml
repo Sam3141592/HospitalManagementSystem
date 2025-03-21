@@ -1,0 +1,212 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Manager_Pages.ManagerDashboardModel
+@{
+    Layout = "_LayoutDoctor";
+}
+
+<!-- Main Content -->
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h3 style="padding:5px">Hello, @Model.mname. <span>Welcome Here</span></h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Patients Treated</h4>
+                        </div>
+                        <div class="card-body">
+
+                            <h4><i class="ti-star"></i>@Model.nuPatients</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Ratings</h4>
+                        </div>
+                        <div class="card-body">
+
+                            @Model.avgRate (@Model.nuFeedback)
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Requests</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Type</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Notes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Math.Min(Model.appts.Rows.Count, 3); i++)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@Model.appts.Rows[i][0]</th>
+                                                    @for (int j = 1; j < Model.appts.Columns.Count; j++)
+                                                    {
+                                                        if (j == 2)
+                                                        {
+                                                            <td>@(((DateTime)Model.appts.Rows[i][j]).ToShortDateString())</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model.appts.Rows[i][j]</td>
+
+                                                        }
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="float-xl-end"><a href="/DOCTOR/ManagerAppointmentRequests?sid=@ViewData["sid"]">See more</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Visits</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Diagnosis</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Math.Min(Model.visits.Rows.Count, 3); i++)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@Model.visits.Rows[i][0]</th>
+                                                    @for (int j = 1; j < Model.visits.Columns.Count; j++)
+                                                    {
+                                                        if (j == 2)
+                                                        {
+                                                            <td>@(((DateTime)Model.visits.Rows[i][j]).ToShortDateString())</td>
+                                                        }
+                                                        else
+                                                        {
+                                                        <td>@Model.visits.Rows[i][j]</td>
+                                                                
+                                                        }
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="float-xl-end"><a href="/DOCTOR/ManagerVisits?sid=@ViewData["sid"]">See more</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Department</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Doctor Name</th>
+                                                <th>Rate</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Math.Min(Model.deptFeedback.Rows.Count, 3); i++)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@Model.deptFeedback.Rows[i][0]</th>
+                                                    @for (int j = 1; j < Model.deptFeedback.Columns.Count; j++)
+                                                    {
+                                                        <td>@Model.deptFeedback.Rows[i][j]</td>
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                            <div class="float-xl-end"><a href="/DOCTOR/ManagerDepartement?sid=@ViewData["sid"]">See more</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Annpuncements</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+                                    @for (int i = 0; i < Math.Min(Model.annc.Rows.Count, 2); i++)
+                                    {
+                                        <div class="card">
+                                            <div class="card-title">
+                                                @Model.annc.Rows[i][0]
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="ct-bar-chart m-t-30">
+                                                    <p>@Model.annc.Rows[i][2]</p>
+                                                </div>
+                                            </div>
+                                            <div class="float-xl-end">@Model.annc.Rows[i][1]</div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="float-xl-end"><a href="/DOCTOR/ManagerAnnouncements?sid=@ViewData["sid"]">See more</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- Closing div tag for "content-wrap" -->
+<!-- Closing tags for any other sections or containers -->

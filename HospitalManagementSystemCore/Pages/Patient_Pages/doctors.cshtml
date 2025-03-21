@@ -1,0 +1,56 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.doctorsModel
+@{
+    Layout = "_LayoutAM";
+}
+<main>
+    <!--? Hero Start -->
+    <div class="slider-area2">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                            <h2>Doctors</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!--? Team Start -->
+    <div class="team-area section-padding30">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-tittle text-center mb-100">
+                        <span>Hello, @Model.pname, mett Our Doctors</span>
+                        <h2>Our Specialist</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @for (int i = 0; i < Model.doctors.Rows.Count; i++)
+                {
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-30">
+                            <div class="team-img">
+                                <img src="~/assets/img/gallery/team2.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <h3>@Model.doctors.Rows[i][0]</h3>
+                                <span>@Model.doctors.Rows[i][3]</span>
+                                <span>Ratings: @Model.doctors.Rows[i][1] (@Model.doctors.Rows[i][2])</span>
+                                <a href="/Patient_Pages/BA22?deptid=@Model.doctors.Rows[i][5]&did=@Model.doctors.Rows[i][4]" class="dep-btn">Appointment<i class="ti-arrow-right"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+</main>

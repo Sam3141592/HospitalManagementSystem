@@ -1,0 +1,330 @@
+﻿@page
+@model HospitalManagementSystem.Pages.ADMIN.AdminViewModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex ml-5 mb-2 mt-3">
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color: #4E4E4E;">Welcome, </h1>
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color:#1390D6;">@Model.mname</h1>
+    </div>
+    <section>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Departements</h2>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Department Number</th>
+                                    <th>Speciality</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableDepartement.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableDepartement.Rows[i][0]</td>
+                                        <td>@Model.DatatableDepartement.Rows[i][1]</td>
+                                        <td>@Model.DatatableDepartement.Rows[i][2]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=Department">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Doctors</h2>
+                    <div class="card-body">
+                        <table class="table table-hover" id="doctors">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Staff ID</th>
+                                    <th>National ID</th>
+                                    <th>Department Number</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Street</th>
+                                    <th>City</th>
+                                    <th>Governorate</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableDoctors.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableDoctors.Rows[i][0]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][1]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][2]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][3]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][4]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][5]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][6]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][7]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][8]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][9]</td>
+                                        <td>@Model.DatatableDoctors.Rows[i][10]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=Doctor">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Lab Techs</h2>
+                    <div class="card-body">
+                        <table class="table table-hover" id="lab-tech">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Staff ID</th>
+                                    <th>National ID</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone Number</th>
+                                    <th>Street</th>
+                                    <th>City</th>
+                                    <th>Governorate</th>
+                                    <th>Number Of Tests</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableLabTech.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableLabTech.Rows[i][0]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][1]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][2]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][3]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][4]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][5]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][6]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][7]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][8]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][9]</td>
+                                        <td>@Model.DatatableLabTech.Rows[i][10]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=LabTechnician">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Nurses</h2>
+                    <div class="card-body">
+                        <table id="nurse-table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Staff ID</th>
+                                    <th>National ID</th>
+                                    <th>Department Number</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Street</th>
+                                    <th>City</th>
+                                    <th>Governorate</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableNurse.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableNurse.Rows[i][0]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][1]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][2]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][3]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][4]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][5]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][6]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][7]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][8]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][9]</td>
+                                        <td>@Model.DatatableNurse.Rows[i][10]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=Nurse">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Pharmacists</h2>
+                    <div class="card-body">
+                        <table class="table table-hover" id="pharmacist-table">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Staff ID</th>
+                                    <th>National ID</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+
+                                    <th>Street</th>
+                                    <th>City</th>
+                                    <th>Governorate</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatablePharmacist.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatablePharmacist.Rows[i][0]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][1]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][2]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][3]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][4]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][5]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][6]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][7]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][8]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][9]</td>
+                                        <td>@Model.DatatablePharmacist.Rows[i][10]</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=Pharmacist">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Patients</h2>
+                    <div class="card-body">
+                        <table id="patient-table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Patient ID</th>
+                                    <th>National ID</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Street</th>
+                                    <th>City</th>
+                                    <th>Governorate</th>
+                                    <th>Phone Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatablePatient.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatablePatient.Rows[i][0]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][1]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][2]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][3]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][4]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][5]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][6]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][7]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][8]</td>
+                                        <td>@Model.DatatablePatient.Rows[i][9]</td>
+                                    </tr>
+                                }
+                                <!-- additional rows -->
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=Patient">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Nurse Schedule</h2>
+                    <div class="card-body">
+                        <table id="patient-table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Nurse ID</th>
+                                    <th>Working Day</th>
+                                    <th>Start Hour</th>
+                                    <th>End Hour</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableNurseSchedule.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableNurseSchedule.Rows[i][0]</td>
+                                        <td>@Model.DatatableNurseSchedule.Rows[i][1]</td>
+                                        <td>@Model.DatatableNurseSchedule.Rows[i][2]</td>
+                                        <td>@Model.DatatableNurseSchedule.Rows[i][3]</td>
+                                        <td>@Model.DatatableNurseSchedule.Rows[i][4]</td>
+                                    </tr>
+                                }
+                                <!-- additional rows -->
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=NURSE_SERVE_AT">See more</a></div>
+                    </div>
+                </div>
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Doctor Schedule</h2>
+                    <div class="card-body">
+                        <table id="patient-table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Room ID</th>
+                                    <th>Doctor ID</th>
+                                    <th>Working Day</th>
+                                    <th>Start Hour</th>
+                                    <th>End Hour</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Math.Min(Model.DatatableDoctorSchedule.Rows.Count, 3); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.DatatableDoctorSchedule.Rows[i][0]</td>
+                                        <td>@Model.DatatableDoctorSchedule.Rows[i][1]</td>
+                                        <td>@Model.DatatableDoctorSchedule.Rows[i][2]</td>
+                                        <td>@Model.DatatableDoctorSchedule.Rows[i][3]</td>
+                                        <td>@Model.DatatableDoctorSchedule.Rows[i][4]</td>
+                                    </tr>
+                                }
+                                <!-- additional rows -->
+                            </tbody>
+                        </table>
+                        <div class="float-xl-end"><a href="/Admin/AdminViewTables?profession=DOCTOR_WORK_AT">See more</a></div>
+                    </div>
+                </div>
+                   <div class="card-body">
+                    <div class="chart-container" width="300" height="300">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <style>
+                        .chart-container {
+                            display: flex;
+                            justify-content: center;
+                        }
+                    </style>
+                    <script type="module">
+                        document.addEventListener('DOMContentLoaded', (event) => {
+                            var ctx = document.getElementById('barChart');
+                            var myChart = new Chart(ctx, @Html.Raw(Model.ChartJson));
+                        });
+                    </script>
+                   </div>
+                   </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+

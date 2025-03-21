@@ -1,0 +1,223 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.IndexModel
+@{
+    ViewData["Title"] = "Home";
+
+}
+@{
+    Layout = "_LayoutAS";
+}
+<main>
+    <!--? slider Area Start-->
+    <div class="slider-area position-relative">
+        <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9">
+                            <div class="hero__caption">
+                                <span>Welcom</span>
+                                <h1 class="cd-headline letters scale">
+                                    We care about your
+                                    <strong class="cd-words-wrapper">
+                                        <b class="is-visible">health</b>
+                                        <b>welfare</b>
+                                        <b>vitality</b>
+                                    </strong>
+                                </h1>
+                                <p data-animation="fadeInLeft" data-delay="0.1s">
+                                    Good health is the state of mental, physical and social well being
+                                    and it does not just mean absence of diseases.
+                                </p>
+                                <a href="/Patient_Pages/BA22" class="btn hero-btn" data-animation="fadeInLeft" data-delay="0.5s">Appointment <i class="ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+    <!--? About Start-->
+    <div class="about-area section-padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-10">
+                    <div class="about-caption mb-50">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle section-tittle2 mb-35">
+                            <h2>Welcome To Our Hospital</h2>
+                        </div>
+                        <p>Book an appointment from home! You can book a follow-up, and examination, or a check-up. We will be glad to have you in our hospital.</p>
+                        <div class="about-btn1 mb-30">
+                            <a href="/Patient_Pages/doctors2" class="btn about-btn">Find Doctors.<i class="ti-arrow-right"></i></a>
+                        </div>
+                        <div class="about-btn1 mb-30">
+                            <a href="/Patient_Pages/BA22" class="btn about-btn2">Appointment <i class="ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <!-- about-img -->
+                    <div class="about-img ">
+                        <div class="about-font-img d-none d-lg-block">
+                            <img src="~/assets/img/gallery/about2.png" alt="">
+                        </div>
+                        <div class="about-back-img ">
+                            <img src="~/assets/img/gallery/about1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About  End-->
+    <!--? department_area_start  -->
+    <div class="department_area section-padding2">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center mb-100">
+                        <span>Our Departments</span>
+                        <h2>Our Medical Services</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="depart_ment_tab mb-30">
+                        <!-- Tabs Buttons -->
+                        <ul class="nav" id="myTab" role="tablist">
+                            @for (int i = 0; i < Model.deptsPa.Rows.Count; i++)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link @((i == 0) ? "active" : "")" id="@Model.deptsPa.Rows[i][0]-tab" data-toggle="tab" href="#@Model.deptsPa.Rows[i][0]" role="tab" aria-controls="@Model.deptsPa.Rows[i][0]" aria-selected="@(i == 0 ? "true" : "false")">
+                                        <h3>@Model.deptsPa.Rows[i][0]</h3>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="dept_main_info white-bg">
+                <div class="tab-content" id="myTabContent">
+                    @for (int i = 0; i < Model.deptsPa.Rows.Count; i++)
+                    {
+                        <div class="tab-pane fade @(i == 0 ? "show active" : "")" id="@Model.deptsPa.Rows[i][0]" role="tabpanel" aria-labelledby="@Model.deptsPa.Rows[i][0]-tab">
+                            <!-- single_content -->
+                            <div class="row align-items-center no-gutters">
+                                <div class="col-lg-7">
+                                    <div class="dept_info">
+                                        <h3>@Model.deptsPa.Rows[i][0]</h3>
+                                        <h4>The @Model.deptsPa.Rows[i][0] Deparment has @Model.deptsPa.Rows[i][1] doctors. Average rating from patients who visited this deparment is @Model.deptsPa.Rows[i][2].</h4>
+                                        <a href="/Patient_Pages/BA22?deptid=@Model.deptsPa.Rows[i][3]" class="dep-btn">Appointment<i class="ti-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="dept_thumb">
+                                        @{
+                                            string departmentName = (string)Model.deptsPa.Rows[i][0];
+                                            string imagePath = $"~/assets/img/gallery/{departmentName}.jpg";
+                                            string resolvedImagePath = Url.Content(imagePath);
+                                        }
+                                        <img src="@resolvedImagePath" alt="">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single_content -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- depertment area end  -->
+    <!--? Team Start -->
+    <div class="team-area section-padding30">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-tittle text-center mb-100">
+                        <span>Our Doctors</span>
+                        <h2>Our Specialist</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @for (int i = 0; i < Math.Min(Model.doctors.Rows.Count, 3); i++)
+                {
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
+                        <div class="single-team mb-30">
+                            <div class="team-img">
+                                <img src="~/assets/img/gallery/team2.png" alt="">
+                            </div>
+                            <div class="team-caption">
+                                <h3>@Model.doctors.Rows[i][0]</h3>
+                                <span>@Model.doctors.Rows[i][3]</span>
+                                <span>Ratings: @Model.doctors.Rows[i][1] (@Model.doctors.Rows[i][2])</span>
+                                <a href="/Patient_Pages/BA22?deptid=@Model.doctors.Rows[i][5]&did=@Model.doctors.Rows[i][4]" class="dep-btn">Appointment<i class="ti-arrow-right"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+    <!--? gallery Products Start -->
+    <div class="gallery-area fix">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery1.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery2.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery3.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery4.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery5.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="gallery-box">
+                        <div class="single-gallery">
+                            <div class="gallery-img " style="background-image: url(~/assets/img/gallery/gallery6.png);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- gallery Products End -->
+</main>

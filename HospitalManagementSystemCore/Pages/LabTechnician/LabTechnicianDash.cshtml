@@ -1,0 +1,200 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Labtech.LabtechDashModel
+@{
+    Layout = "_LayoutLabtech";
+}
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h3 style="padding:5px">Hello, @Model.ltname . <span>Welcome Here</span></h3>
+            </div>
+            <section>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Tests Conducted</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <h4><i class="ti-star"></i>@Model.lttests</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Add Test</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Test Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody><form asp-page-handler="AddTest">
+                                        <td><input type="text" name="pname" id="selectedItem" /></td>
+                                        <td><input type="text" name="tname" required></td>
+                                        <td><input type="submit" value="Submit" required></td>
+                                        </form>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Requests</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-striped" id="test-requests">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Test ID</th>
+                                                        <th>Test Name</th>
+                                                        <th>Date Requested</th>
+                                                        <th>Results to Enter</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Math.Min(Model.testsreq.Rows.Count, 3); i++)
+                                                    {
+                                                        <tr>
+                                                            <th scope="row">@Model.testsreq.Rows[i][0]</th>
+                                                            @for (int j = 1; j < Model.testsreq.Columns.Count; j++)
+                                                            {
+                                                                if (j == 3)
+                                                                {
+                                                                    <td>@(((DateTime)Model.testsreq.Rows[i][j]).ToShortDateString())</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@Model.testsreq.Rows[i][j]</td>
+                                                                }
+
+                                                            }
+
+                                                            <form method="post" asp-page-handler="MarkTest">
+                                                                <input type="hidden" name="testid" id="selectedItem" value="@Model.testsreq.Rows[i][1]" />
+                                                            <td><input type="text" placeholder="Enter result" name="results" class="result-input"></td>
+                                                            <td><input type="submit" value="Submit"></td>
+                                                            </form>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="float-xl-end"><a href="/LabTechnician/LabtechRequests?sid=@ViewData["sid"]">See more</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Tests Conducted by You</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="test-results">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Test Name</th>
+                                                        <th>Date Requested</th>
+                                                        <th>Date Conducted</th>
+                                                        <th>Results</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Math.Min(Model.testsdone.Rows.Count, 3); i++)
+                                                    {
+                                                        <tr>
+                                                            <th scope="row">@Model.testsdone.Rows[i][0]</th>
+                                                            @for (int j = 1; j < Model.testsdone.Columns.Count - 1; j++)
+                                                            {
+                                                                if (j == 3 || j == 2)
+                                                                {
+                                                                    <td>@(((DateTime)Model.testsdone.Rows[i][j]).ToShortDateString())</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@Model.testsdone.Rows[i][j]</td>
+                                                                }
+                                                            }
+                                                            <td><a href="@Model.testsdone.Rows[i][Model.testsdone.Columns.Count-1]">Results</a></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="float-xl-end"><a href="/LabTechnician/LabtechPast?sid=@ViewData["sid"]">See more</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Announcments</h4>
+
+                            </div>
+                            <div class="card-body">
+                                <div class="card">
+                                    @for (int i = 0; i < Math.Min(Model.annc.Rows.Count, 2); i++)
+                                    {
+                                        <div class="card">
+                                            <div class="card-title">
+                                                @Model.annc.Rows[i][0]
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="ct-bar-chart m-t-30">
+                                                    <p>@Model.annc.Rows[i][2]</p>
+                                                </div>
+                                            </div>
+                                            <div class="float-xl-end">@Model.annc.Rows[i][1]</div>
+                                        </div>
+                                    }
+
+
+                                    <div class="float-xl-end"><a href="/LabTechnician/LabtechAnnouncments?sid=@ViewData["sid"]">See more</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

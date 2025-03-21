@@ -1,0 +1,80 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.PaApptsModel
+@{
+    Layout = "_LayoutAM";
+}
+<body>
+    <main>
+        <div class="home_blog-area section-padding30">
+            <div class="container">
+                <div class="row justify-content-sm-center">
+                    <div class="cl-xl-7 col-lg-8 col-md-10">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle text-center mb-70">
+                            <span>Welcome @Model.pname, see your upcoming appointments</span>
+                            <h2>We cannot wait to see you getting better!</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="single-blogs mb-30">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h1 style="margin:10px">Your Upcoming Appointments</h1>
+                                </div>
+                                <div style="font-size:25px" class="card-body">
+                                    <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                        <div class="card-body">
+                                            <table class="table table-responsive-xl" id="test-results">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Doctor Name</th>
+                                                        <th>Room</th>
+                                                        <th>Date</th>
+                                                        <th>Time</th>
+                                                        <th></th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.appts.Rows.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <th scope="row">@Model.appts.Rows[i][0]</th>
+                                                            @for (int j = 1; j < Model.appts.Columns.Count -1 ; j++)
+                                                            {
+                                                                if (j == 2)
+                                                                {
+                                                                    <td>@(((DateTime)Model.appts.Rows[i][j]).ToShortDateString())</td>
+                                                                }  
+                                                                else
+                                                                {
+                                                                    <td>@Model.appts.Rows[i][j]</td>
+                                                                }
+                                                                
+                                                            }
+                                                            <form method="post" onsubmit="return showConfirmation()">
+                                                                <input type="hidden" name="apptid" id="selectedItem" value="@Model.appts.Rows[i][4]" />
+                                                            <td><input type="submit" value="Delete" required></td>
+                                                            </form>
+
+                                                            
+
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>

@@ -1,0 +1,95 @@
+﻿.form-container {
+    top: 550px;
+    left: 267px;
+    width: 670px;
+    height: 270px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    background-color: rgb(122, 163, 193, 0.25);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for form header */
+.form-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Style for form row */
+.form-row {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+/* Style for form value */
+.form-value {
+    font-size: 16px;
+}
+
+/* Style for "See more" button */
+.see-more-button {
+    left: 560px;
+    background-color: #4285F4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+}
+
+/* Style for "See more" button hover */
+.see-more-button:hover {
+    background-color: #34C4F1;
+}
+
+.Date_of_visit {
+    position: absolute;
+    right: 50px;
+    margin-bottom: 10px;
+}
+
+
+.form-container-feedback {
+    top: 850px;
+    left: 267px;
+    width: 670px;
+    height: 270px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    background-color: rgb(122, 163, 193, 0.25);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.Date_of_visit_feedback {
+    position: absolute;
+    right: 260px;
+    margin-bottom: 10px;
+}
+
+.btn.btn-primary1 {
+    position: absolute;
+    right: 30px;
+    margin-bottom: 10px;
+    margin-top: -8px;
+}
+
+.Feedback {
+    position: absolute;
+    right: 80px;
+}
+
+.btn.btn-primary1:hover {
+    background-color: #34C4F1;
+}

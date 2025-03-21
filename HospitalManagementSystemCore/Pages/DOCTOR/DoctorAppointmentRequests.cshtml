@@ -1,0 +1,133 @@
+﻿@page
+@model HospitalManagementSystem.Pages.DOCTOR.DoctorAppointmentRequestsModel
+@{
+    Layout = "_LayoutDoctor2";
+}
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="page-title">
+                <h3 style="padding:5px">Hello, @Model.mname. <span>Welcome Here</span></h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Today Appointment Requests</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Type</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Notes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.apptsToday.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@Model.apptsToday.Rows[i][0]</th>
+                                                    @for (int j = 1; j < Model.apptsToday.Columns.Count - 1; j++)
+                                                    {
+                                                        if (j == 1)
+                                                        {
+                                                            <td><a href="/Patient_Pages/RecordForMS?pid=@ViewData["@Model.apptsToday.Rows[6]"]&sid=@ViewData["sid"]">@Model.apptsToday.Rows[i][j]</a></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model.apptsToday.Rows[i][j]</td>
+
+                                                        }
+                                                    }
+                                                </tr>
+                                                <form method="post" asp-page-handler="MarkAppointmenr">
+                                                    <input type="hidden" name="apptid" id="selectedItem" value="@Model.apptsToday.Rows[i][5]" />
+                                            <td>
+                                                <input type="text" id="diagnosisInput" placeholder="Enter Diagnosis" name="diagnosis" required>
+                                            </td>
+                                            <td>
+                                                <label for="testCheckbox">Test needed:</label>
+                                                <input type="checkbox" id="testCheckbox" name="testNeeded" onclick="toggleTestNameInput()" checked="@(0 == 1)">
+                                            </td>
+                                            <td>
+                                                <input type="text" id="testNameInput" placeholder="Enter Test(s) Required" name="testName" class="hidden">
+                                            </td>
+                                            <td>
+                                                <input type="submit" value="Submit">
+                                            </td>
+                                            </form>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Appointment Requests</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                <div class="card-body">
+
+                                    <table class="table table-responsive-xl table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Type</th>
+                                                <th>Appointment Date</th>
+                                                <th>Appointment Time</th>
+                                                <th>Notes</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for (int i = 0; i < Model.appts.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@Model.appts.Rows[i][0]</th>
+                                                    @for (int j = 1; j < Model.appts.Columns.Count; j++)
+                                                    {
+                                                        if (j == 2)
+                                                        {
+                                                            <td>@(((DateTime)Model.appts.Rows[i][j]).ToShortDateString())</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>@Model.appts.Rows[i][j]</td>
+
+                                                        }
+                                                    }
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleTestNameInput() {
+        var testNameInput = document.getElementById('testNameInput');
+        testNameInput.classList.toggle('hidden');
+    }
+</script>

@@ -1,0 +1,104 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.BA2Model
+@{
+    Layout = "_LayoutAS";
+}
+<main>
+    <div class="contact-form-main">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-xl-7 col-lg-7">
+                    <div class="form-wrapper">
+                        <!--Section Tittle  -->
+                        <div class="form-tittle">
+                            <div class="row ">
+                                <div class="col-xl-12">
+                                    <div class="section-tittle section-tittle2">
+                                        <span>Book An Appointment</span>
+                                        <h2>Appointment Form</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Section Tittle  -->
+                        <form style="font:29px" id="contact-form" action="#" method="POST">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-box user-icon mb-30">
+                                        <input type="text" name="name" placeholder="Full Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-box email-icon mb-30">
+                                        <input type="number" name="number" placeholder="Phone">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            <option value="">Department 1</option>
+                                            <option value="">Department 2</option>
+                                            <option value="">Department 3</option>
+                                            <option value="">Department 4</option>
+                                            <option value="">Department 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            <option value="">Doctor 1</option>
+                                            <option value="">Doctor 2</option>
+                                            <option value="">Doctor 3</option>
+                                            <option value="">Doctor 4</option>
+                                            <option value="">Doctor 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            <option value="">Examination</option>
+                                            <option value="">Follow-up</option>
+                                            <option value="">Check-up</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-box email-icon mb-30">
+                                        <input id="adate" type="date" name="adate" />
+                                    </div>
+                                    <p class="help-block"><strong>Date format:</strong> yyyy-mm-dd</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="select-itms">
+                                        <select name="select" id="select2">
+                                            <option value="">09:00</option>
+                                            <option value="">10:00</option>
+                                            <option value="">11:00</option>
+                                            <option value="">12:00</option>
+                                            <option value="">13:00</option>
+                                        </select>
+                                    </div>
+                                    <p class="help-block"><strong>Based on the 24 hours system</strong></p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-box message-icon mb-65">
+                                        <textarea name="message" id="message" placeholder="Notes"></textarea>
+                                    </div>
+                                    <div class="submit-info">
+                                        <button class="btn" type="submit">Submit Now <i class="ti-arrow-right"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact left Img-->
+        <div class="from-left d-none d-lg-block">
+            <img src="~/assets/img/gallery/contact_form.png" alt="">
+        </div>
+    </div>
+</main>

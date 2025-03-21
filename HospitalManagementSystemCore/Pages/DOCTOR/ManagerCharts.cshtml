@@ -1,0 +1,60 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Manager_Pages.ManagerChartsModel
+@{
+	Layout = "_Layout_Manager";
+}
+
+
+
+<div id="content-wrapper" class="container  bg-transparent">
+    <!-- Main Content -->
+    <div id="content">
+        <div class="row">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex ml-5 mb-2 mt-3">
+                    <h1 class="h3 mb-0 grey-text" style="font-family: 'Poppins';">Welcome,  </h1>
+                    <h1 class="h3 mb-0 blue-text" style="font-family: 'Poppins';">Doctor Example</h1>
+                </div>
+                <div class="d-sm-flex ml-5 mb-5 mt-3">
+                    <h1 class="h3 mb-0 grey-text" style="font-family: 'Poppins';">Manager of Departement DEPARTEMENT_NAME,  </h1>
+                </div>
+                <div class="row">
+                    <div class="vh-100 d-flex flex-column col-11 mx-auto bg-white " style="border-radius: 1rem 1rem 1rem 1rem;">
+                        <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">Your Statistics</h2>
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Last 3 Month</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Last:</div>
+                                            <a class="dropdown-item" href="#">Month</a>
+                                            <a class="dropdown-item" href="#">3 Month</a>
+                                            <a class="dropdown-item" href="#">6 Month</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

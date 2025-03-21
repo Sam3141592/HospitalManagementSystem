@@ -1,0 +1,78 @@
+﻿@page
+@model HospitalManagementSystem.Pages.Patient_Pages.TestsModel
+@{
+    Layout = "_LayoutAM";
+}
+<body>  
+    <main>
+        <div class="home_blog-area section-padding30">
+            <div class="container">
+                <div class="row justify-content-sm-center">
+                    <div class="cl-xl-7 col-lg-8 col-md-10">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle text-center mb-70">
+                            <span>Welcome @Model.pname, see your test results</span>
+                            <h2>Hopefully, it is only good news!</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="single-blogs mb-30">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h1 style="margin:10px">Your Test Results</h1>
+                                </div>
+                                <div style="font-size:25px" class="card-body">
+                                    <div class="card shadow" style="border-radius: 1rem 1rem 1rem 1rem;">
+                                        <div class="card-body">
+                                            <table class="table table-responsive-xl" id="test-results">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Test Name</th>
+                                                        <th>Date Requsted</th>
+                                                        <th>Date Conducted</th>
+                                                        <th>Results</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.tests.Rows.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <th scope="row">@Model.tests.Rows[i][0]</th>
+                                                            @for (int j = 1; j < Model.tests.Columns.Count; j++)
+                                                            {
+                                                                if (j == 1 || j ==2)
+                                                                {
+                                                                    <td>@(((DateTime)Model.tests.Rows[i][j]).ToShortDateString())</td>
+                                                                }
+                                                                else if (j==3)
+                                                                {
+
+                                                                    <td><a href="@Model.tests.Rows[i][j]" style="color:black">Results</a></td>
+                                                                    
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@Model.tests.Rows[i][j]</td>
+                                                                }
+
+                                                            }
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>

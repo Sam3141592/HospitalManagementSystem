@@ -1,0 +1,109 @@
+﻿@page
+@using Newtonsoft.Json;
+@model HospitalManagementSystem.Pages.Admin.AdminViewTablesModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container-fluid">
+    <div class="d-sm-flex ml-5 mb-2 mt-3">
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color: #4E4E4E;">Welcome, </h1>
+        <h1 class="h3 mb-0 " style="font-family: 'Poppins';color:#1390D6;">@Model.mname</h1>
+    </div>
+    <section>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card" style="border-radius: 1rem 1rem 1rem 1rem;">
+                    <h2 class="h3 m-4 grey-text" style="font-family: 'Poppins';">@(Model.profession == "NURSE_SERVE_AT" ? "Nurse Serve At" : Model.profession)</h2>
+                    <div class="card-body">
+                        <input type="text" id="search-input" placeholder="Search by Staff ID">
+                        <div class="overflow-auto h-100">
+                        <table class="table table-hover" id="doctors">
+                            <thead>
+                                <tr>
+                                    @for(int i = 0; i < Model.professions[Model.profession].Item2;i++)
+                                    {
+                                    <th>@Model.professions[Model.profession].Item1[i]</th>
+                                    }
+                                        <th>Edit</th>
+                                <th>Delete</th>
+                                    </tr>
+                                </thead>
+                            
+                            <tbody>
+                                    @for (int i = 0; i < Model.Datatable.Rows.Count; i++)
+                                    {
+                                        <tr>
+                                            @if (@Model.profession.ToLower() == "department")
+                                            {
+                                                <td>@Model.Datatable.Rows[i][0]</td>
+                                                <td>@Model.Datatable.Rows[i][2]</td>
+                                                <td>@Model.Datatable.Rows[i][1]</td>
+                                            }
+                                            else
+                                            {
+                                                @for (int j = 0; j < Model.professions[Model.profession].Item2; j++)
+                                                {
+                                                    <td>@Model.Datatable.Rows[i][j]</td>
+                                                }
+                                            }
+
+                                            @{
+                                                List<object> idJSON = new List<object>();
+                                                if (Model.profession.ToLower() == "department")
+                                                {
+
+                                                    idJSON.Add(Convert.ToInt32(Model.Datatable.Rows[i][1]));
+                                                }
+                                                else if (Model.profession.ToLower() == "nurse_serve_at" || Model.profession.ToLower() == "doctor_work_at")
+                                                {
+                                                    idJSON.Add((string)Model.Datatable.Rows[i][1]);
+                                                    idJSON.Add((string)Model.Datatable.Rows[i][2]);
+                                                }
+                                                else
+                                                {
+                                                    idJSON.Add((string)Model.Datatable.Rows[i][2]);
+                                                }
+
+                                            }
+                                            
+
+                                            <form method="post">
+                                            <td>
+                                                <input type="hidden" name="selectedItem" id="selectedItem" value="@JsonConvert.SerializeObject(idJSON)"  />
+                                                <input type="hidden" name="profession" id="selectedItem" value=@Model.profession />
+                                                <button class="btn btn-primary" asp-page-handler="Edit">Edit</button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+                                            </td>
+                                        </form>
+                                    </tr>
+                                    }
+                            </tbody>
+                    
+                    </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+  </section>
+
+
+</div>
+
+<script type="text/javascript">
+ $('#search-input').keyup(function () {
+        var searchText = $(this).val().toLowerCase();
+        $('table tbody tr').each(function () {
+            var currentRow = $(this);
+            var currentStaffID = currentRow.find('td:eq(2)').text().toLowerCase();
+            if (currentStaffID.indexOf(searchText) !== -1) {
+                currentRow.show();
+            } else {
+                currentRow.hide();
+            }
+        });
+    });
+</script>
